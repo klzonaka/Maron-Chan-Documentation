@@ -73,3 +73,46 @@ Maron-Chanは次の構成で成り立ちます。
 |----|----|
 |**もふ**|スタックからアドレスと値を取り出してヒープ領域に書き込みます。 **上から二番目の値がアドレス、 一番上の値が実際に書き込まれる値です。**|
 |**もち**|アドレスから値を取り出してスタックに積みます。 **スタックとは違い、 読み取ったあとも値は残ります。**|
+
+# 例外
+Maron-Chanでは、 特定の条件でコードの実行を中断し、 エラー出力を行います。
+
+## Syntax Error
+構文の解析時に例外が発生した場合、 それ以降のコードの実行を中断します。
+|例外|状況|
+|----|----|
+|Unknown IMP|IMPの解析に問題が発生。|
+|Unknown command|コマンドの解析に問題が発生。|
+|Unexpected arguments|コマンドは引数を期待していないが、 引数が渡された。|
+|Invalid arguments|コマンドの引数に問題がある。|
+|An argument received nil|コマンドは引数を期待しているが、 渡されなかった。|
+|No found end point|コードの終了宣言が見つからなかった。|
+
+## Stack Error
+スタック時に問題がある場合、 それ以降コードの実行を中断します。
+|例外|状況|
+|----|----|
+|Stack does not allow nil|スタックにnil値を積んだ。|
+|Stack does not allow inf|スタックにinfinityを積んだ。|
+
+## Expression Error
+計算時に問題がある場合、 それ以降コードの実行を中断します。
+|例外|状況|
+|----|----|
+|Cannot devide by zero|ゼロによる除算をした。|
+|Expression includes nil|式にnil値が含まれている|
+|Expression includes inf|式にinfinityが含まれている|
+
+## Memory Warning
+メモリアクセス時に問題がある場合、 ログに記録します。 **コードの実行は続行します。**
+|例外|状況|
+|----|----|
+|Address not found, using nil|アドレスが見つからなかったため、 nilが読み込まれた。|
+|Address will be deleted|アドレスに保存する値が見つからなかったため、 アドレスを削除した。|
+
+## Link Error
+実行前に解析され、 ラベルのリンク時に問題がある場合は、 コードを実行せずにエラーを記録します。
+|例外|状況|
+|----|----|
+|Label is not resolved|ラベルのジャンプ先が不明。|
+|Label declared but not used|ラベルは宣言したが使用されなかった。|
