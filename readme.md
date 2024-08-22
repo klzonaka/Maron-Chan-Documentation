@@ -86,7 +86,7 @@ Maron-Chanでは、 特定の条件でコードの実行を中断し、 エラ�
 |Unexpected arguments|コマンドは引数を期待していないが、 引数が渡された。|
 |Invalid arguments|コマンドの引数に問題がある。|
 |An argument received nil|コマンドは引数を期待しているが、 渡されなかった。|
-|No found end point|コードの終了宣言が見つからなかった。|
+|End point not found|コードの終了宣言が見つからなかった。|
 
 ## Stack Error
 スタック時に問題がある場合、 それ以降コードの実行を中断します。
